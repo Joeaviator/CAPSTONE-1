@@ -58,6 +58,20 @@ SELECT * FROM Orders;
 SELECT Customers.C_NAME, Salesman.NAME, Salesman.CITY FROM Customers
 JOIN Salesman ON Customers.S_ID=Salesman.S_ID;
 
---All the order with the customer names
+--Linking customers to their salesman
+SELECT Customers.C_NAME, Salesman.NAME FROM Customers JOIN Salesman ON Customers.S_ID=Salesman.S_ID;
+
+--Fetch orders where customer's city does not match salesnman's city
+SELECT Orders.ORDER_NO, Customers.C_NAME, Orders.C_ID, Orders.S_ID FROM Orders JOIN Customers ON Orders.C_ID=Customers.C_ID JOIN Salesman ON Orders.S_ID=Salesman.S_ID WHERE Customers.C_CITY <> Salesman.CITY;
+--Fetch orders where customer's city does matches salesnman's city
+SELECT Orders.ORDER_NO, Customers.C_NAME, Orders.C_ID, Orders.S_ID FROM Orders JOIN Customers ON Orders.C_ID=Customers.C_ID JOIN Salesman ON Orders.S_ID=Salesman.S_ID WHERE Customers.C_CITY == Salesman.CITY;
+--Fetch all orders with customer names
+SELECT Orders.ORDER_NO, Customers.C_NAME FROM ORDERS JOIN Customers ON Orders.C_ID = Customers.C_ID;
+--Calculate the commissions for orders where the order amount is greater than 5000
+SELECT Orders.ORDER_NO, ORDERS.ORDER_AMOUNT, Salesman.NAME,  Salesman.COMMISSION FROM Orders JOIN Salesman ON Orders.S_ID=Salesman.S_ID WHERE Orders.ORDER_AMOUNT > 6500;
+--Orders on a specific date
+SELECT * FROM Customers
+JOIN ORDERS ON Customers.C_ID=Orders.C_ID
+WHERE Orders.ORDER_DATE="25-09-2023";
 
 
